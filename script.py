@@ -22,7 +22,7 @@ def parseArgs(args, out):
     isinstance(arg, type) does not work because all args are strings be default. Do not use it. Manual checking required
     collecting of arguments can be performed as showed below but manual for loop is a better way:
     out['integers'] = [arg for arg in args if isInteger(arg)]
-    out['floats'] = [arg for arg in args if isFloat(arg)]
+    out['floats'] = [arg for arg in args if not isInteger(arg) and isFloat(arg)]
     out['strings'] = [arg for arg in args if not isInteger(arg) and not isFloat(arg)]
     '''
 
