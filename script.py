@@ -18,9 +18,6 @@ def parseArgs(args, out):
     if len(args) < 1:
         raise Exception("No arguments provided")
 
-    integers = []
-    floats = []
-    strings = []
     #isinstance(arg, type) does not work because all args are strings be default. Manual checking required
     for arg in args:
         if isInteger(arg):
