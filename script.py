@@ -18,7 +18,14 @@ def parseArgs(args, out):
     if len(args) < 1:
         raise Exception("No arguments provided")
 
-    #isinstance(arg, type) does not work because all args are strings be default. Manual checking required
+    ''''
+    isinstance(arg, type) does not work because all args are strings be default. Do not use it. Manual checking required
+    collecting of arguments can be performed as showed below but manual for loop is a better way:
+    out['integers'] = [arg for arg in args if isInteger(arg)]
+    out['floats'] = [arg for arg in args if isFloat(arg)]
+    out['strings'] = [arg for arg in args if not isInteger(arg) and not isFloat(arg)]
+    '''
+
     for arg in args:
         if isInteger(arg):
             out['integers'].append(int(arg))
