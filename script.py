@@ -15,7 +15,7 @@ def isFloat(obj):
         return False
 
 def parseArgs(args, out):
-    if len(args) < 1:
+    if not args:
         raise Exception("No arguments provided")
 
     ''''
@@ -37,17 +37,15 @@ def parseArgs(args, out):
     return
 
 def printArgs(args):
-    if len(args['integers']) > 0:
+    if args['integers']:
         print('Integers: {}'.format(args['integers']))
-    if len(args['floats']) > 0:
+    if args['floats']:
         print('Floats: {}'.format(args['floats']))
-    if len(args['strings']) > 0:
+    if args['strings']:
         print('Strings: {}'.format(args['strings']))
 
-def findSubstrings(strToFind, arrOfStrings, out):
-    for s in arrOfStrings:
-        if strToFind in s and strToFind != s:
-            out.append(s)
+def findSubstrings(strToFind, arrOfStrings):
+    return [s for s in arrOfStrings if strToFind in s and strToFind != s]
 
 def main():
     parsedAgs = {
@@ -65,12 +63,12 @@ def main():
     printArgs(parsedAgs)
 
     strs = []
-    lastArg = args[len(args)-1:][0]
+    lastArg = args[-1]
     if not isInteger(lastArg) and not isFloat(lastArg):
-        findSubstrings(lastArg, parsedAgs['strings'], strs)
+        strs = findSubstrings(lastArg, parsedAgs['strings'])
 
-    if len(strs) > 0:
-        print('Found string \'{}\' in following args: {}'.format(lastArg, strs))
+    if strs:
+        print("Found string '{}' in following args: {}".format(lastArg, strs))
     
 
 if (__name__ == '__main__'):
